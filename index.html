@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>校园大亨 - 旗舰完整版</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="gameContainer">
+    <div class="bg-particles" id="particles"></div>
+    
+    <div class="header">
+      <div class="header-left">
+        <div class="game-title">校园大亨</div>
+        <div class="day-badge">📅 第<span id="dayNum">1</span>天</div>
+        <div class="day-badge" style="background:linear-gradient(90deg, #8b5cf6, #a78bfa)">⭐ Lv.<span id="levelNum">1</span></div>
+      </div>
+      <div class="header-right">
+        <div class="resource-badge" onclick="openFinance()">
+          <span class="resource-icon">💰</span>
+          <span class="resource-value" id="gold">100,000</span>
+        </div>
+        <div class="resource-badge" onclick="openShop()">
+          <span class="resource-icon">💎</span>
+          <span class="resource-value diamond" id="diamond">500</span>
+        </div>
+        <div class="resource-badge">
+          <span class="resource-icon">⭐</span>
+          <span class="resource-value" id="reputation">50</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="season-badge season-spring" id="seasonBadge">🌸 春季</div>
+    <div class="season-badge cursor-pointer" id="weatherBadge" style="top:150px;background:linear-gradient(90deg, #3b82f6, #60a5fa)" onclick="openWeather()">☀️ 晴天</div>
+
+    <div class="main-content">
+      <div class="entrance-bar">
+        <div class="entrance-card gold gold-shine reddot" onclick="openSignIn()">
+          <div class="entrance-icon">📅</div>
+          <div class="entrance-name">签到</div>
+        </div>
+        <div class="entrance-card purple" onclick="openGacha()">
+          <div class="entrance-icon">🎒</div>
+          <div class="entrance-name">招募</div>
+        </div>
+        <div class="entrance-card blue" onclick="openBuild()">
+          <div class="entrance-icon">🏗️</div>
+          <div class="entrance-name">建造</div>
+        </div>
+        <div class="entrance-card" onclick="openTech()">
+          <div class="entrance-icon">🔬</div>
+          <div class="entrance-name">科技</div>
+        </div>
+        <div class="entrance-card green" onclick="openStudent()">
+          <div class="entrance-icon">👨‍🎓</div>
+          <div class="entrance-name">学生</div>
+        </div>
+        <div class="entrance-card orange" onclick="openClub()">
+          <div class="entrance-icon">🎯</div>
+          <div class="entrance-name">社团</div>
+        </div>
+        <div class="entrance-card green" onclick="openRival()">
+          <div class="entrance-icon">🏫</div>
+          <div class="entrance-name">校际</div>
+        </div>
+        <div class="entrance-card fire" onclick="openDefense()">
+          <div class="entrance-icon">🛡️</div>
+          <div class="entrance-name">防御</div>
+        </div>
+        <div class="entrance-card" onclick="openChallenge()">
+          <div class="entrance-icon">📋</div>
+          <div class="entrance-name">挑战</div>
+        </div>
+        <div class="entrance-card" onclick="openTransfer()">
+          <div class="entrance-icon">🤝</div>
+          <div class="entrance-name">挖角</div>
+        </div>
+        <div class="entrance-card purple" onclick="openAlumni()">
+          <div class="entrance-icon">🎓</div>
+          <div class="entrance-name">校友</div>
+        </div>
+        <div class="entrance-card blue" onclick="openResources()">
+          <div class="entrance-icon">🗃️</div>
+          <div class="entrance-name">物资</div>
+        </div>
+        <div class="entrance-card green" onclick="openExplore()">
+          <div class="entrance-icon">🧭</div>
+          <div class="entrance-name">探索</div>
+        </div>
+        <div class="entrance-card" onclick="openCrafting()">
+          <div class="entrance-icon">🔧</div>
+          <div class="entrance-name">合成</div>
+        </div>
+        <div class="entrance-card cyan" onclick="openStocks()">
+          <div class="entrance-icon">📈</div>
+          <div class="entrance-name">股市</div>
+        </div>
+        <div class="entrance-card" onclick="openBank()">
+          <div class="entrance-icon">🏦</div>
+          <div class="entrance-name">银行</div>
+        </div>
+        <div class="entrance-card orange" onclick="openEvents()">
+          <div class="entrance-icon">🎉</div>
+          <div class="entrance-name">活动</div>
+        </div>
+        <div class="entrance-card purple" onclick="openRankings()">
+          <div class="entrance-icon">🏆</div>
+          <div class="entrance-name">排行</div>
+        </div>
+      </div>
+
+      <div class="main-area">
+        <div class="finance-panel">
+          <div class="finance-item">
+            <div class="finance-item-label">收入</div>
+            <div class="finance-item-value finance-income" id="dailyIncome">0</div>
+          </div>
+          <div class="finance-item">
+            <div class="finance-item-label">支出</div>
+            <div class="finance-item-value finance-expense" id="dailyExpense">0</div>
+          </div>
+          <div class="finance-item">
+            <div class="finance-item-label">利润</div>
+            <div class="finance-item-value finance-profit" id="dailyProfit">0</div>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <span class="stat-label">😊 满意度</span>
+          <span class="stat-value" id="satisfaction">80%</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-label">🏅 排名</span>
+          <span class="stat-value" id="schoolRank">10/100</span>
+        </div>
+
+        <div class="section-title">🏫 校园建筑</div>
+        <div class="building-grid-wrapper">
+          <div class="building-grid" id="buildingGrid">
+          </div>
+        </div>
+
+        <div class="section-title">📦 物资储备</div>
+        <div class="resource-bar" id="resourceBar">
+          <div class="resource-item" title="木材">🪵 <span id="res-wood">500</span></div>
+          <div class="resource-item" title="石材">🪨 <span id="res-stone">300</span></div>
+          <div class="resource-item" title="铁矿">⚙️ <span id="res-iron">100</span></div>
+          <div class="resource-item" title="食物">🍞 <span id="res-food">200</span></div>
+          <div class="resource-item" title="水源">💧 <span id="res-water">300</span></div>
+          <div class="resource-item" title="电力">⚡ <span id="res-power">100</span></div>
+          <div class="resource-item rare" title="水晶">💎 <span id="res-crystal">0</span></div>
+          <div class="resource-item rare" title="稀有金属">🔩 <span id="res-rareMetal">0</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="tab-bar">
+      <div class="tab-item active" id="tabHome" onclick="showTab('home')">
+        <div class="tab-icon">🏠</div>
+        <div class="tab-label">首页</div>
+      </div>
+      <div class="tab-item" id="tabStudents" onclick="showTab('students')">
+        <div class="tab-icon">👨‍🎓</div>
+        <div class="tab-label">学生</div>
+      </div>
+      <div class="tab-item" id="tabBuild" onclick="showTab('build')">
+        <div class="tab-icon">🏗️</div>
+        <div class="tab-label">建造</div>
+      </div>
+      <div class="tab-item" id="tabEvents" onclick="showTab('events')">
+        <div class="tab-icon">🎉</div>
+        <div class="tab-label">活动</div>
+      </div>
+      <div class="tab-item" id="tabMenu" onclick="showTab('menu')">
+        <div class="tab-icon">⚙️</div>
+        <div class="tab-label">菜单</div>
+      </div>
+    </div>
+
+    <div id="modalContainer"></div>
+    <div id="floatMessages"></div>
+    <div id="toastContainer"></div>
+  </div>
+
+  <!-- 游戏模块加载顺序很重要 -->
+  <script src="gameData.js"></script>
+  <script src="gameState.js"></script>
+  <script src="uiRenderer.js"></script>
+  <script src="gameLoop.js"></script>
+  <script src="gameLogic.js"></script>
+</body>
+</html>
