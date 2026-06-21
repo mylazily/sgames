@@ -5,37 +5,60 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>校园大亨 - 旗舰完整版</title>
   <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
   <div id="gameContainer">
+    <!-- 背景粒子效果 -->
     <div class="bg-particles" id="particles"></div>
     
+    <!-- 顶部 HUD 资源栏 -->
     <div class="header">
       <div class="header-left">
-        <div class="game-title">校园大亨</div>
+        <div class="game-logo">
+          <div class="logo-icon">🏫</div>
+          <div class="logo-text">校园大亨</div>
+        </div>
         <div class="day-badge">📅 第<span id="dayNum">1</span>天</div>
-        <div class="day-badge" style="background:linear-gradient(90deg, #8b5cf6, #a78bfa)">⭐ Lv.<span id="levelNum">1</span></div>
+        <div class="level-badge">⭐ Lv.<span id="levelNum">1</span></div>
       </div>
-      <div class="header-right">
-        <div class="resource-badge" onclick="openFinance()">
-          <span class="resource-icon">💰</span>
-          <span class="resource-value" id="gold">100,000</span>
+      <div class="header-resources">
+        <div class="resource-item gold-resource" onclick="openFinance()">
+          <div class="resource-icon-wrapper">
+            <svg viewBox="0 0 24 24" class="resource-icon">
+              <circle cx="12" cy="12" r="10" fill="#FFD700"/>
+              <text x="12" y="16" text-anchor="middle" fill="#8B4513" font-size="12" font-weight="bold">$</text>
+            </svg>
+          </div>
+          <div class="resource-value" id="gold">100,000</div>
         </div>
-        <div class="resource-badge" onclick="openShop()">
-          <span class="resource-icon">💎</span>
-          <span class="resource-value diamond" id="diamond">500</span>
+        <div class="resource-item diamond-resource" onclick="openShop()">
+          <div class="resource-icon-wrapper">
+            <svg viewBox="0 0 24 24" class="resource-icon">
+              <polygon points="12,2 22,12 12,22 2,12" fill="#00CED1"/>
+              <text x="12" y="16" text-anchor="middle" fill="white" font-size="10" font-weight="bold">♦</text>
+            </svg>
+          </div>
+          <div class="resource-value diamond" id="diamond">500</div>
         </div>
-        <div class="resource-badge">
-          <span class="resource-icon">⭐</span>
-          <span class="resource-value" id="reputation">50</span>
+        <div class="resource-item reputation-resource">
+          <div class="resource-icon-wrapper">
+            <svg viewBox="0 0 24 24" class="resource-icon">
+              <polygon points="12,2 15,9 22,9 16,14 18,21 12,17 6,21 8,14 2,9 9,9" fill="#FF69B4"/>
+            </svg>
+          </div>
+          <div class="resource-value" id="reputation">50</div>
         </div>
       </div>
     </div>
 
+    <!-- 季节与天气标识 -->
     <div class="season-badge season-spring" id="seasonBadge">🌸 春季</div>
-    <div class="season-badge cursor-pointer" id="weatherBadge" style="top:150px;background:linear-gradient(90deg, #3b82f6, #60a5fa)" onclick="openWeather()">☀️ 晴天</div>
+    <div class="weather-badge cursor-pointer" id="weatherBadge" style="top:150px;background:linear-gradient(90deg, #3b82f6, #60a5fa)" onclick="openWeather()">☀️ 晴天</div>
 
+    <!-- 主内容区 -->
     <div class="main-content">
+      <!-- 快捷入口栏 -->
       <div class="entrance-bar">
         <div class="entrance-card gold gold-shine reddot" onclick="openSignIn()">
           <div class="entrance-icon">📅</div>
@@ -111,7 +134,9 @@
         </div>
       </div>
 
+      <!-- 主游戏区域 -->
       <div class="main-area">
+        <!-- 财务面板 -->
         <div class="finance-panel">
           <div class="finance-item">
             <div class="finance-item-label">收入</div>
@@ -127,21 +152,29 @@
           </div>
         </div>
 
-        <div class="stat-card">
-          <span class="stat-label">😊 满意度</span>
-          <span class="stat-value" id="satisfaction">80%</span>
-        </div>
-        <div class="stat-card">
-          <span class="stat-label">🏅 排名</span>
-          <span class="stat-value" id="schoolRank">10/100</span>
+        <!-- 统计卡片 -->
+        <div class="stats-row">
+          <div class="stat-card">
+            <span class="stat-label">😊 满意度</span>
+            <span class="stat-value" id="satisfaction">80%</span>
+            <div class="progress-bar">
+              <div class="progress-fill gold" id="satisfactionBar" style="width: 80%"></div>
+            </div>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">🏅 排名</span>
+            <span class="stat-value" id="schoolRank">10/100</span>
+          </div>
         </div>
 
+        <!-- 校园建筑网格 -->
         <div class="section-title">🏫 校园建筑</div>
         <div class="building-grid-wrapper">
           <div class="building-grid" id="buildingGrid">
           </div>
         </div>
 
+        <!-- 物资储备条 -->
         <div class="section-title">📦 物资储备</div>
         <div class="resource-bar" id="resourceBar">
           <div class="resource-item" title="木材">🪵 <span id="res-wood">500</span></div>
@@ -156,6 +189,7 @@
       </div>
     </div>
 
+    <!-- 底部标签栏 -->
     <div class="tab-bar">
       <div class="tab-item active" id="tabHome" onclick="showTab('home')">
         <div class="tab-icon">🏠</div>
@@ -179,6 +213,7 @@
       </div>
     </div>
 
+    <!-- 弹窗容器 -->
     <div id="modalContainer"></div>
     <div id="floatMessages"></div>
     <div id="toastContainer"></div>
