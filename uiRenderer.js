@@ -278,6 +278,14 @@ function openWeather() {
   showToast(`${w.icon} ${w.name} - 收入倍率: ${w.income}x`);
 }
 
+// 缩放网格
+function toggleGridZoom() {
+  const grid = document.getElementById('buildingGrid');
+  if (grid) {
+    grid.classList.toggle('zoomed');
+  }
+}
+
 // 其他功能占位符
 function openSignIn() { showToast('📅 签到功能开发中...'); }
 function openGacha() { showToast('🎒 招募功能开发中...'); }
