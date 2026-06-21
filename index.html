@@ -12,7 +12,7 @@
     <!-- 背景粒子效果 -->
     <div class="bg-particles" id="particles"></div>
     
-    <!-- 顶部 HUD 资源栏 - 简化版 -->
+    <!-- 顶部资源栏 - 圆形徽章风格 (参考无尽冬日) -->
     <div class="header">
       <div class="header-left">
         <div class="game-logo">
@@ -52,13 +52,83 @@
       </div>
     </div>
 
-    <!-- 主内容区 - 重新设计 -->
+    <!-- 主内容区 - 三栏布局 (参考无尽冬日) -->
     <div class="main-content">
-      <!-- 核心游戏区域 - 建筑网格 -->
-      <div class="core-game-area">
-        <div class="section-header">
-          <h2 class="section-title">🏫 我的校园</h2>
-          <div class="section-actions">
+      
+      <!-- 左侧功能菜单 - 模块化卡片 -->
+      <div class="left-menu">
+        <div class="menu-section">
+          <h3 class="section-title">📅 日常</h3>
+          <div class="menu-grid">
+            <div class="menu-card gold gold-shine reddot" onclick="openSignIn()">
+              <div class="menu-icon">📅</div>
+              <div class="menu-name">签到</div>
+            </div>
+            <div class="menu-card purple" onclick="openGacha()">
+              <div class="menu-icon">🎒</div>
+              <div class="menu-name">招募</div>
+            </div>
+            <div class="menu-card blue" onclick="openStudent()">
+              <div class="menu-icon">👨‍🎓</div>
+              <div class="menu-name">学生</div>
+            </div>
+            <div class="menu-card green" onclick="openClub()">
+              <div class="menu-icon">🎯</div>
+              <div class="menu-name">社团</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <h3 class="section-title">🏗️ 建设</h3>
+          <div class="menu-grid">
+            <div class="menu-card orange" onclick="openBuild()">
+              <div class="menu-icon">🏗️</div>
+              <div class="menu-name">建造</div>
+            </div>
+            <div class="menu-card cyan" onclick="openTech()">
+              <div class="menu-icon">🔬</div>
+              <div class="menu-name">科技</div>
+            </div>
+            <div class="menu-card pink" onclick="openResources()">
+              <div class="menu-icon">🗃️</div>
+              <div class="menu-name">物资</div>
+            </div>
+            <div class="menu-card purple" onclick="openCrafting()">
+              <div class="menu-icon">🔧</div>
+              <div class="menu-name">合成</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="menu-section">
+          <h3 class="section-title">🎮 扩展</h3>
+          <div class="menu-grid">
+            <div class="menu-card blue" onclick="openExplore()">
+              <div class="menu-icon">🧭</div>
+              <div class="menu-name">探索</div>
+            </div>
+            <div class="menu-card green" onclick="openRival()">
+              <div class="menu-icon">🏫</div>
+              <div class="menu-name">校际</div>
+            </div>
+            <div class="menu-card fire" onclick="openDefense()">
+              <div class="menu-icon">🛡️</div>
+              <div class="menu-name">防御</div>
+            </div>
+            <div class="menu-card orange" onclick="openEvents()">
+              <div class="menu-icon">🎉</div>
+              <div class="menu-name">活动</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 中心场景 - 3D等距视角校园 -->
+      <div class="center-scene">
+        <div class="scene-header">
+          <h2 class="scene-title">🏫 我的校园</h2>
+          <div class="scene-actions">
             <button class="btn-icon" onclick="toggleGridZoom()" title="缩放">🔍</button>
             <button class="btn-icon" onclick="openBuild()" title="建造">🏗️</button>
           </div>
@@ -71,8 +141,40 @@
         </div>
       </div>
 
-      <!-- 快速统计面板 - 紧凑布局 -->
-      <div class="quick-stats">
+      <!-- 右侧快捷操作栏 -->
+      <div class="right-quick-actions">
+        <div class="quick-action-btn" onclick="openFinance()">
+          <div class="quick-action-icon">💰</div>
+          <div class="quick-action-label">财务</div>
+        </div>
+        <div class="quick-action-btn" onclick="openShop()">
+          <div class="quick-action-icon">🛒</div>
+          <div class="quick-action-label">商店</div>
+        </div>
+        <div class="quick-action-btn" onclick="openChallenge()">
+          <div class="quick-action-icon">📋</div>
+          <div class="quick-action-label">挑战</div>
+        </div>
+        <div class="quick-action-btn" onclick="openTransfer()">
+          <div class="quick-action-icon">🤝</div>
+          <div class="quick-action-label">挖角</div>
+        </div>
+        <div class="quick-action-btn" onclick="openAlumni()">
+          <div class="quick-action-icon">🎓</div>
+          <div class="quick-action-label">校友</div>
+        </div>
+        <div class="quick-action-btn" onclick="openBank()">
+          <div class="quick-action-icon">🏦</div>
+          <div class="quick-action-label">银行</div>
+        </div>
+        <div class="quick-action-btn" onclick="openRankings()">
+          <div class="quick-action-icon">🏆</div>
+          <div class="quick-action-label">排行</div>
+        </div>
+      </div>
+
+      <!-- 底部统计面板 - 紧凑布局 -->
+      <div class="bottom-stats">
         <div class="stat-item">
           <span class="stat-label">💰 日收入</span>
           <span class="stat-value" id="dailyIncome">0</span>
@@ -87,75 +189,6 @@
         <div class="stat-item">
           <span class="stat-label">🏅 排名</span>
           <span class="stat-value" id="schoolRank">10/100</span>
-        </div>
-      </div>
-
-      <!-- 快捷功能入口 - 分类展示 -->
-      <div class="quick-actions">
-        <div class="action-category">
-          <h3 class="category-title">📅 日常</h3>
-          <div class="action-grid">
-            <div class="action-card gold gold-shine reddot" onclick="openSignIn()">
-              <div class="action-icon">📅</div>
-              <div class="action-name">签到</div>
-            </div>
-            <div class="action-card purple" onclick="openGacha()">
-              <div class="action-icon">🎒</div>
-              <div class="action-name">招募</div>
-            </div>
-            <div class="action-card blue" onclick="openStudent()">
-              <div class="action-icon">👨‍🎓</div>
-              <div class="action-name">学生</div>
-            </div>
-            <div class="action-card green" onclick="openClub()">
-              <div class="action-icon">🎯</div>
-              <div class="action-name">社团</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="action-category">
-          <h3 class="category-title">🏗️ 建设</h3>
-          <div class="action-grid">
-            <div class="action-card orange" onclick="openBuild()">
-              <div class="action-icon">🏗️</div>
-              <div class="action-name">建造</div>
-            </div>
-            <div class="action-card cyan" onclick="openTech()">
-              <div class="action-icon">🔬</div>
-              <div class="action-name">科技</div>
-            </div>
-            <div class="action-card pink" onclick="openResources()">
-              <div class="action-icon">🗃️</div>
-              <div class="action-name">物资</div>
-            </div>
-            <div class="action-card purple" onclick="openCrafting()">
-              <div class="action-icon">🔧</div>
-              <div class="action-name">合成</div>
-            </div>
-          </div>
-        </div>
-
-        <div class="action-category">
-          <h3 class="category-title">🎮 扩展</h3>
-          <div class="action-grid">
-            <div class="action-card blue" onclick="openExplore()">
-              <div class="action-icon">🧭</div>
-              <div class="action-name">探索</div>
-            </div>
-            <div class="action-card green" onclick="openRival()">
-              <div class="action-icon">🏫</div>
-              <div class="action-name">校际</div>
-            </div>
-            <div class="action-card fire" onclick="openDefense()">
-              <div class="action-icon">🛡️</div>
-              <div class="action-name">防御</div>
-            </div>
-            <div class="action-card orange" onclick="openEvents()">
-              <div class="action-icon">🎉</div>
-              <div class="action-name">活动</div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -178,7 +211,7 @@
       </details>
     </div>
 
-    <!-- 底部标签栏 - 精简为核心功能 -->
+    <!-- 底部标签栏 - 圆形图标风格 -->
     <div class="tab-bar">
       <div class="tab-item active" id="tabHome" onclick="showTab('home')">
         <div class="tab-icon">🏠</div>
